@@ -20,8 +20,9 @@ spl_autoload_register(function (string $class): void {
     }
 });
 
+$defaultActions = ['auth' => 'login'];
 $page = (string) ($_GET['page'] ?? 'dashboard');
-$action = (string) ($_GET['action'] ?? 'index');
+$action = (string) ($_GET['action'] ?? ($defaultActions[$page] ?? 'index'));
 
 $routes = [
     'auth' => [AuthController::class, ['login', 'attempt', 'logout']],
